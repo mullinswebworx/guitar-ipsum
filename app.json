@@ -1,0 +1,6 @@
+{
+  "name": "Guitar Ipsum API",
+  "description": "Lorem Ipsum... except with guitars!",
+  "image": "heroku/clojure",
+  "addons": [ "heroku-postgresql" ]
+}
