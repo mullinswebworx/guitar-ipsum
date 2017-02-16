@@ -1,12 +1,39 @@
-# Guitar Ipsum RESTful API
 
-This RESTful API works the same way a Lorem Ipsum generator would, except it uses guitars!
+# clojure-getting-started
 
-## Usage
+A barebones Clojure app, which can easily be deployed to Heroku.  
 
-The API can be found at: https://guitar-ipsum.herokuapp.com/
-Request options are as follows:
-- paras: followed by a positive integer. This indicates the number of paragraphs you want generated. 
-  The default is 1.
-- brand: followed by a brand of guitar. This limits your guitars generated to only that brand.
-  Your options are: Gibson, Fender, Ibanez, Schecter, Jackson. The default is all brands.
+This application support the [Getting Started with Clojure](https://devcenter.heroku.com/articles/getting-started-with-clojure) article - check it out.
+
+## Running Locally
+
+Make sure you have Clojure installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+
+```sh
+$ git clone https://github.com/heroku/clojure-getting-started.git
+$ cd clojure-getting-started
+$ lein repl
+user=> (require 'clojure-getting-started.web)
+user=>(def server (clojure-getting-started.web/-main))
+```
+
+Your app should now be running on [localhost:5000](http://localhost:5000/).
+
+## Deploying to Heroku
+
+```sh
+$ heroku create
+$ git push heroku master
+$ heroku open
+```
+
+or
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+## Documentation
+
+For more information about using Clojure on Heroku, see these Dev Center articles:
+
+- [Clojure on Heroku](https://devcenter.heroku.com/categories/clojure)
+
