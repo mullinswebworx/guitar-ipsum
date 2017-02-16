@@ -1,4 +1,4 @@
-(defproject clojure-getting-started "1.0.0-SNAPSHOT"
+(defproject guitar-ipsum "1.0.0-SNAPSHOT"
   :description "Lorem Ipsum RESTFul API, but with guitars!"
   :url "https://guitar-ipsum.herokuapp.com/"
   :license {:name "Eclipse Public License v1.0"
