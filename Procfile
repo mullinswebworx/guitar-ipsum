@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/guitar-ipsum.jar clojure.main -m guitar-ipsum.web
+web: java $JVM_OPTS -cp target/clojure-getting-started-standalone.jar clojure.main -m clojure-getting-started.web
