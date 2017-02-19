@@ -1,6 +1,6 @@
 {
-  "name": "Start on Heroku: Clojure",
-  "description": "A barebones Clojure app, which can easily be deployed to Heroku.",
+  "name": "Guitar Ipsum",
+  "description": "Lorem Ipsum, except with guitars!",
   "image": "heroku/clojure",
   "addons": [ "heroku-postgresql" ]
 }
