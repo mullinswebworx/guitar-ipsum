@@ -19,14 +19,14 @@
 
 (defn random [] ((repeatedly 5 (rand-nth Gibson))))
 
-(defn default []
+(defn splash []
   {:status 200
    :headers {"Content-Type" "text/plain"}
    :body "This is a test!"})
 
 (defroutes app
   (GET "/" []
-       (default))
+       (splash))
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
