@@ -35,8 +35,8 @@
        (default))
   (GET "/guitars=:input" {{input :input} :params}
     (guitars (Integer/parseInt input)))
-  (GET "/brand=:input" {{input :input} :params}
-    (randomize 50 (var input)))
+  ;;(GET "/brand=:input" {{input :input} :params}
+    ;;(randomize 50 (var input)))
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
