@@ -5,28 +5,29 @@
             [clojure.java.io :as io]
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]
-            (:require [clojure.string :as str])))
+            [clojure.string :as str]))
 
-(def Gibson '(" ES-335", " Les Paul", " Flying V", " SG", " Explorer", " Firebird", " ES-175"))
+(def Gibson '("ES-335", "Les Paul", "Flying V", "SG", "Explorer", "Firebird", "ES-175"))
 
-(def Fender '(" Stratocaster", " Telecaster", " Jaguar", " Mustang"))
+(def Fender '("Stratocaster", "Telecaster", "Jaguar", "Mustang"))
 
-(def Ibanez '(" RG", " RGA", " S", " Mikro", " RGD", " SA", " FR", " Talman", " AR", " ARZ", " Iceman", " Gio"))
+(def Ibanez '("RG", "RGA", "S", "Mikro", "RGD", "SA", "FR", "Talman", "AR", "ARZ", "Iceman", "Gio"))
 
-(def Schecter '(" Damien", " Hellraiser", " Demon", " Blackjack", " Apocalypse", " Omen", " Retro", " Sustainiac", " Standard", " Special Edition", " Sun Valley Super Shredder"))
+(def Schecter '("Damien", "Hellraiser", "Demon", "Blackjack", "Apocalypse", "Omen", "Retro", "Sustainiac", "Standard", "Special Edition", "Sun Valley Super Shredder"))
 
-(def Jackson '(" X", " JS", " Soloist", " Dinky", " Rhoads", " Juggernaut", " Baritone", " Monarkh", " Warrior", " Demmelition", " Dominion", " Star"))
+(def Jackson '("X", "JS", "Soloist", "Dinky", "Rhoads", "Juggernaut", "Baritone", "Monarkh", "Warrior", "Demmelition", "Dominion", "Star"))
 
-(defn random [] ((repeatedly 5 (rand-nth Gibson))))
+(defn randomize [n b]
+  (apply str (interpose " " (repeatedly n #(rand-nth b)))))
 
-(defn splash []
+(defn default []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body "This is a test!"})
+   :body (randomize 50 (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
 
 (defroutes app
   (GET "/" []
-       (splash))
+       (default))
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
