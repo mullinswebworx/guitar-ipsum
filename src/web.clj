@@ -33,8 +33,6 @@
 (defroutes app
   (GET "/" []
        (default))
-  (GET "/guitars" {{input :input} :params}
-    (guitars input))
   }
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
