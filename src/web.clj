@@ -33,7 +33,6 @@
 (defroutes app
   (GET "/" []
        (default))
-  }
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
