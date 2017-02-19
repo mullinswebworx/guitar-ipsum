@@ -17,10 +17,12 @@
 
 (def Jackson '(" X", " JS", " Soloist", " Dinky", " Rhoads", " Juggernaut", " Baritone", " Monarkh", " Warrior", " Demmelition", " Dominion", " Star"))
 
+(defn random [] ((repeatedly 5 (rand-nth Gibson))))
+
 (defn default []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body (repeatedly 5 (rand-nth Gibson))})
+   :body (random)})
 
 (defroutes app
   (GET "/" []
