@@ -22,7 +22,7 @@
 (defn default []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body {"This is a test!"}})
+   :body "This is a test!"})
 
 (defroutes app
   (GET "/" []
