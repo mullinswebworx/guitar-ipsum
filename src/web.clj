@@ -25,9 +25,16 @@
    :headers {"Content-Type" "text/plain"}
    :body (randomize 50 (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
 
+(defn guitars [x]
+  {:status 200
+   :headers {"Content-Type" "text/plain"}
+   :body (randomize x (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
+
 (defroutes app
   (GET "/" []
        (default))
+  (GET "/guitars" [input]
+    (guitars input))
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
