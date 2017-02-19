@@ -4,16 +4,27 @@
             [compojure.route :as route]
             [clojure.java.io :as io]
             [ring.adapter.jetty :as jetty]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            (:require [clojure.string :as str])))
 
-(defn splash []
+(def Gibson '(" ES-335", " Les Paul", " Flying V", " SG", " Explorer", " Firebird", " ES-175"))
+
+(def Fender '(" Stratocaster", " Telecaster", " Jaguar", " Mustang"))
+
+(def Ibanez '(" RG", " RGA", " S", " Mikro", " RGD", " SA", " FR", " Talman", " AR", " ARZ", " Iceman", " Gio"))
+
+(def Schecter '(" Damien", " Hellraiser", " Demon", " Blackjack", " Apocalypse", " Omen", " Retro", " Sustainiac", " Standard", " Special Edition", " Sun Valley Super Shredder"))
+
+(def Jackson '(" X", " JS", " Soloist", " Dinky", " Rhoads", " Juggernaut", " Baritone", " Monarkh", " Warrior", " Demmelition", " Dominion", " Star"))
+
+(defn default []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body "Hello from Heroku"})
+   :body (repeatedly 5 (rand-nth Gibson))})
 
 (defroutes app
   (GET "/" []
-       (splash))
+       (default))
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
