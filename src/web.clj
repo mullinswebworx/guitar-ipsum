@@ -23,7 +23,7 @@
 (defn default []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body (randomize 50 (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
+   :body (randomize 2000 (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
 
 (defn guitars [x]
   {:status 200
