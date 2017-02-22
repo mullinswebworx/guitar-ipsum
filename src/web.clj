@@ -47,10 +47,8 @@
         "Fender" (randomize 1000 Fender)
         "Ibanez" (randomize 1000 Ibanez)
         "Schecter" (randomize 1000 Schecter)
-        "Jackson" (randomize 1000 Jackson))))
-
-  (GET "/" [] ;; DEFAULT: no input or parameters given
-    (default))
+        "Jackson" (randomize 1000 Jackson)
+        nil (default)))) ;; no parameters were given at all
 
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
