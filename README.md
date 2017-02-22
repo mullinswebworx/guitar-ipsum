@@ -11,4 +11,4 @@ Request options are as follows:
 - brand= followed by a brand of guitar. This limits your guitars generated to only that brand.
   Your options are: Gibson, Fender, Ibanez, Schecter, Jackson. The default is all brands.
 
-All request options can be combined for a variety of generated guitars.
+These two request options can also be combined.
