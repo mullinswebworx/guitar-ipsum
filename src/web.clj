@@ -23,27 +23,38 @@
 (defn default []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body (randomize 2000 (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
+   :body (randomize 1000 (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
 
-(defn guitars [x]
+(defn guitar [x]
   {:status 200
    :headers {"Content-Type" "text/plain"}
    :body (randomize x (concat Gibson, Fender, Ibanez, Schecter, Jackson))})
 
 (defroutes app
-  (GET "/" []
-       (default))
-  (GET "/guitars=:input" {{input :input} :params}
-    (guitars (Integer/parseInt input)))
-  ;;(GET "/brand=:input" {{input :input} :params}
-    ;;(randomize 50 (var input)))
+  (GET "/" [guitars brand]
+    ;; if the number of guitars is specified, check brand
+    (if (not= guitars nil)
+      (case brand
+        "Gibson" (randomize (Integer/parseInt guitars) Gibson)
+        "Fender" (randomize (Integer/parseInt guitars) Fender)
+        "Ibanez" (randomize (Integer/parseInt guitars) Ibanez)
+        "Schecter" (randomize (Integer/parseInt guitars) Schecter)
+        "Jackson" (randomize (Integer/parseInt guitars) Jackson)
+        nil (guitar (Integer/parseInt guitars))) ;; case where brand isn't specified
+      ;; ELSE there is no number of guitars specified, go simply by default number and brand:
+      (case brand
+        "Gibson" (randomize 1000 Gibson)
+        "Fender" (randomize 1000 Fender)
+        "Ibanez" (randomize 1000 Ibanez)
+        "Schecter" (randomize 1000 Schecter)
+        "Jackson" (randomize 1000 Jackson))))
+
+  (GET "/" [] ;; DEFAULT: no input or parameters given
+    (default))
+
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty (site #'app) {:port port :join? false})))
-
-;; For interactive development:
-;; (.stop server)
-;; (def server (-main))
